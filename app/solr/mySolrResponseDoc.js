@@ -6,4 +6,4 @@ var MySolrResponseDoc = (function () {
     return MySolrResponseDoc;
 }());
 exports.MySolrResponseDoc = MySolrResponseDoc;
-//# sourceMappingURL=mysolrResponseDoc.js.map
+//# sourceMappingURL=mySolrResponseDoc.js.map

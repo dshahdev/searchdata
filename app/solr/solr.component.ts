@@ -17,6 +17,7 @@ export class SolrComponent implements OnInit {
     numRows: number = 10;
     page: number;
     totalCounts: number;
+    ipaddress:string = "localhost"; //10.0.1.22" ;
     constructor(private sharedService: SharedService) {}
 
     onSearch(searchText:string){
@@ -26,7 +27,7 @@ export class SolrComponent implements OnInit {
 
         console.log("submit is clicked: " + searchText);
         
-        this.url.buildURL("10.0.1.22",8983,"gdata",this.numRows,this.start,searchText);
+        this.url.buildURL(this.ipaddress,8983,"gdata",this.numRows,this.start,searchText);
       
         this.sharedService.setUrl(this.url.getFinalUrl());
         
@@ -40,7 +41,7 @@ export class SolrComponent implements OnInit {
 
         this.sharedService.getStartRow().subscribe((num:number) => {
             this.start = num;
-            this.url.buildURL("10.0.1.22",8983,"gdata",this.numRows,this.start,this.text);  
+            this.url.buildURL(this.ipaddress,8983,"gdata",this.numRows,this.start,this.text);  
             this.sharedService.setUrl(this.url.getFinalUrl());
         }) ;
         this.setPagging();  
@@ -56,13 +57,13 @@ export class SolrComponent implements OnInit {
             if(this.page === 1){
 
                 this.start = this.start + 10;
-                this.url.buildURL("10.0.1.22",8983,"gdata",this.numRows,this.start,this.text); 
+                this.url.buildURL(this.ipaddress,8983,"gdata",this.numRows,this.start,this.text); 
                 this.sharedService.setUrl(this.url.getFinalUrl());  
             
             } else if(this.page === -1){
 
                 this.start = this.start - 10;
-                this.url.buildURL("10.0.1.22",8983,"gdata",this.numRows,this.start,this.text);
+                this.url.buildURL(this.ipaddress,8983,"gdata",this.numRows,this.start,this.text);
                 this.sharedService.setUrl(this.url.getFinalUrl());  
 
             }  

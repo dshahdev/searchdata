@@ -30,6 +30,7 @@ export class SharedService {
     constructor(private http: Http){}
 
     getData(url:string):Promise<SolrResponse> {
+        console.log(url);
         return this.http.get(url)
                 .toPromise()
                 .then(response => this.setTradeData(response.json() as SolrResponse))

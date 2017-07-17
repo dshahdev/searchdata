@@ -19,12 +19,13 @@ var SolrComponent = (function () {
         this.url = new solrUrl_1.solrUrl();
         this.start = 0;
         this.numRows = 10;
+        this.ipaddress = "localhost"; //10.0.1.22" ;
     }
     SolrComponent.prototype.onSearch = function (searchText) {
         //search text : flange AND mumbai AND china AND SHANGHAI == to test app
         this.text = searchText;
         console.log("submit is clicked: " + searchText);
-        this.url.buildURL("10.0.1.22", 8983, "gdata", this.numRows, this.start, searchText);
+        this.url.buildURL(this.ipaddress, 8983, "gdata", this.numRows, this.start, searchText);
         this.sharedService.setUrl(this.url.getFinalUrl());
     };
     SolrComponent.prototype.ngOnInit = function () {
@@ -34,7 +35,7 @@ var SolrComponent = (function () {
         var _this = this;
         this.sharedService.getStartRow().subscribe(function (num) {
             _this.start = num;
-            _this.url.buildURL("10.0.1.22", 8983, "gdata", _this.numRows, _this.start, _this.text);
+            _this.url.buildURL(_this.ipaddress, 8983, "gdata", _this.numRows, _this.start, _this.text);
             _this.sharedService.setUrl(_this.url.getFinalUrl());
         });
         this.setPagging();
@@ -47,12 +48,12 @@ var SolrComponent = (function () {
             console.log("I got: " + _this.start);
             if (_this.page === 1) {
                 _this.start = _this.start + 10;
-                _this.url.buildURL("10.0.1.22", 8983, "gdata", _this.numRows, _this.start, _this.text);
+                _this.url.buildURL(_this.ipaddress, 8983, "gdata", _this.numRows, _this.start, _this.text);
                 _this.sharedService.setUrl(_this.url.getFinalUrl());
             }
             else if (_this.page === -1) {
                 _this.start = _this.start - 10;
-                _this.url.buildURL("10.0.1.22", 8983, "gdata", _this.numRows, _this.start, _this.text);
+                _this.url.buildURL(_this.ipaddress, 8983, "gdata", _this.numRows, _this.start, _this.text);
                 _this.sharedService.setUrl(_this.url.getFinalUrl());
             }
         });

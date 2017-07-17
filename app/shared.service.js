@@ -25,6 +25,7 @@ var SharedService = (function () {
     }
     SharedService.prototype.getData = function (url) {
         var _this = this;
+        console.log(url);
         return this.http.get(url)
             .toPromise()
             .then(function (response) { return _this.setTradeData(response.json()); })
