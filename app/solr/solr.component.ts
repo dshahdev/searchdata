@@ -17,7 +17,7 @@ export class SolrComponent implements OnInit {
     numRows: number = 10;
     page: number;
     totalCounts: number;
-    ipaddress:string = "localhost"; //10.0.1.22" ;
+    ipaddress:string = "10.0.1.22" ;
     constructor(private sharedService: SharedService) {}
 
     onSearch(searchText:string){
